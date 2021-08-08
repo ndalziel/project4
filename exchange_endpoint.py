@@ -11,6 +11,7 @@ from sqlalchemy.orm import load_only
 from datetime import datetime
 import sys
 import collections
+import random
 
 from models import Base, Order, Log
 
@@ -48,6 +49,20 @@ def log_message(d):
     g.session.add(log)    
     g.session.commit()
 
+
+def create_order(platform):
+    platforms = ["Algorand", "Ethereum"]       
+    assert platform in platforms
+    other_platform = platforms[1-platforms.index(platform)]
+    order = {}
+    order['buy_currency'] = other_platform
+    order['sell_currency'] = platform
+    order['buy_amount'] = random.randint(1,10)
+    order['sell_amount'] = random.randint(1,10)
+    order['sender_pk'] = hex(random.randint(0,2**256))[2:] 
+    order['receiver_pk'] = hex(random.randint(0,2**256))[2:] 
+
+    return order
 
 class DataStore():
     payload = None
@@ -115,10 +130,16 @@ def trade():
 
             order = content['payload']
             del order['platform']
-            order['signature']=content['sig']
             
+            #order['signature']=content['sig']
+            
+            print("real",order)
+            
+            test_order = create_order("Ethereum")
+            print ("test",test_order)
+
             process_order(order)
-            
+
             #new_order = Order(**order)
             #g.session.add(new_order)    
             #g.session.commit()
