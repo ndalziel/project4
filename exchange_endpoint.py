@@ -117,8 +117,7 @@ def trade():
             del order['platform']
             order['signature']=content['sig']
             new_order = Order(**order)
-
-            process_order(new_order)
+            process_order(order)
 
             #g.session.add(new_order)    
             #g.session.commit()
