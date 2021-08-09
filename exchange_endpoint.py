@@ -136,10 +136,10 @@ def trade():
             # test_order = create_order("Ethereum")
             # print ("test",test_order)
 
-            result = process_order(order)
+            #result = process_order(order)
 
-            #new_order = Order(**order)
-            #g.session.add(new_order)    
+            new_order = Order(**order)
+            g.session.add(new_order)    
             g.session.commit()
 
             return  result
