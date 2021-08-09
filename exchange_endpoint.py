@@ -140,7 +140,7 @@ def trade():
 
             #new_order = Order(**order)
             #g.session.add(new_order)    
-            #g.session.commit()
+            g.session.commit()
 
             return  result
 
