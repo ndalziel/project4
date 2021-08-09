@@ -142,7 +142,7 @@ def trade():
             g.session.add(new_order)    
             g.session.commit()
 
-            return  result
+            return jsonify(True)
 
 
 @app.route('/order_book')
