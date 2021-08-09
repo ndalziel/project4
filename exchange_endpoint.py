@@ -128,20 +128,16 @@ def trade():
 
         else:
 
-            order = content['payload']
-            del order['platform']
-            
+            order = {}
+            order['sender_pk'] = content['payload']['sender_pk']
+            order['receiver_pk'] = content['payload']['receiver_pk']
+            order['buy_currency'] = content['payload']['buy_currency']
+            order['sell_currency'] = content['payload']['sell_currency']
+            order['buy_amount'] = content['payload']['buy_amount']
+            order['sell_amount'] = content['payload']['sell_amount']
             order['signature']=content['sig']
             
-            # test_order = create_order("Ethereum")
-            # print ("test",test_order)
-
-            print ("order:",order)
             process_order(order)
-
-            #new_order = Order(**order)
-            #g.session.add(new_order)    
-            #g.session.commit()
 
             return jsonify(True)
 
