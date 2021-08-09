@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+from flask import jsonify
 
 from models import Base, Order
 engine = create_engine('sqlite:///orders.db')
@@ -46,6 +47,8 @@ def process_order(order):
             create_child_order(counterparty_order, counterparty_order.buy_amount - new_order.sell_amount)
        
     session.commit()
+
+    return jsonify(True)
 
 
 def print_orders():

@@ -136,15 +136,13 @@ def trade():
             # test_order = create_order("Ethereum")
             # print ("test",test_order)
 
-            process_order(order)
+            result = process_order(order)
 
             #new_order = Order(**order)
             #g.session.add(new_order)    
             #g.session.commit()
 
-            return  jsonify(True)
-
-    return  jsonify(True)
+            return  result
 
 
 @app.route('/order_book')
