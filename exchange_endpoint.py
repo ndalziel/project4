@@ -131,12 +131,10 @@ def trade():
             order = content['payload']
             del order['platform']
             
-            #order['signature']=content['sig']
+            order['signature']=content['sig']
             
-            print("real",order)
-            
-            test_order = create_order("Ethereum")
-            print ("test",test_order)
+            # test_order = create_order("Ethereum")
+            # print ("test",test_order)
 
             process_order(order)
 
