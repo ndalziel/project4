@@ -144,7 +144,7 @@ def trade():
 
             return  jsonify(True)
 
-
+    return  jsonify(True)
 
 
 @app.route('/order_book')
